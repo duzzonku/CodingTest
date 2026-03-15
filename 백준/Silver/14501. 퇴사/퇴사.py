@@ -1,23 +1,25 @@
-def dfs(day, cur_profit):
-    global max_profit
+def dfs(idx, cur_sum):
+    global max_sum
 
-    if day >= N:
-        max_profit = max(max_profit, cur_profit)
+    if idx >= N:
+        max_sum = max(max_sum, cur_sum)
         return
 
-    if day + info[day][0] <= N:
-        dfs(day + info[day][0], cur_profit + info[day][1])
+    if idx + info[idx][0] <= N:
+        dfs(idx + info[idx][0], cur_sum + info[idx][1]) 
+    
+    dfs(idx + 1, cur_sum)
 
-    dfs(day + 1, cur_profit)
 
 
 N = int(input())
 info = []
-for tc in range(1, N + 1):
+for tc in range(N):
     T, P = map(int, input().split())
     info.append((T, P))
 
-max_profit = 0
+    max_sum= 0   
 
 dfs(0, 0)
-print(max_profit)
+
+print(max_sum)
